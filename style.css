@@ -1,0 +1,252 @@
+/* style.css — кастомное оформление под Tailwind-проект */
+
+.hero-gradient {
+  background: linear-gradient(90deg, #7c3aed, #6366f1);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Карточки с эффектом стекла */
+.card-glass {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.3); 
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2); 
+  transition: all 0.3s ease;
+}
+
+.card-glass:hover {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.4); 
+  transform: translateY(-5px); 
+}
+
+/* Карточки с добавленной ценностью */
+.value-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+  transition: 0.3s ease;
+}
+
+.value-card:hover {
+  box-shadow: 0 0 40px rgba(124, 58, 237, 0.4);
+  transform: translateY(-5px);
+}
+
+/* Заголовки аккордеонов */
+.accordion-title {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.accordion-title:hover {
+  color: #a78bfa; /* Добавлен эффект на hover */
+}
+
+/* Вопросы FAQ */
+.faq-question {
+  background-color: rgba(124, 58, 237, 0.15); /* Легкий фон для вопросов */
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  color: #eaeaea;
+  border-radius: 5px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: rgba(124, 58, 237, 0.2);
+  transform: scale(1.02); /* Легкое увеличение при наведении */
+}
+
+/* Активный вопрос FAQ */
+.faq-question.active {
+  background-color: rgba(124, 58, 237, 0.25); /* Активный фон при открытом вопросе */
+  transform: scale(1.05); /* Легкое увеличение активного элемента */
+}
+
+/* Ответы FAQ */
+.faq-answer {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #c2c2c2;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 15px;
+  display: none;
+}
+
+.faq-answer.active {
+  display: block;
+  animation: fadeIn 0.3s ease-out; /* Плавное появление ответа */
+}
+
+/* Анимация плавного появления */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);;
+  border-radius: 10px;
+  background-color: rgba(204, 174, 255, 0.3);;
+}
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.form-container input, .form-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #4824ca;
+  border-radius: 5px;
+}
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: rgb(117, 74, 236);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-container button:disabled {
+  background-color: #8010ca;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #875de9;
+  border-radius: 5px;
+}
+
+.cart-item .item-details {
+  flex: 1;
+}
+
+.cart-item button {
+  background-color: rgba(72, 25, 182, 0.301);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: #000000; /* Тёмный фон */
+}
+
+/* Динамичные линии */
+.dynamic-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0));
+  background-size: 200% 100%;
+  animation: moveLines 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moveLines {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 0%;
+  }
+}
+
+/* Главный контент */
+section {
+  position: relative;
+  z-index: 10;
+}
+/* Стили для корзины */
+.cart-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background-color: rgba(204, 174, 255, 0.2);
+}
+
+/* Контейнер корзины */
+#cart-items {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Элементы корзины */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(124, 58, 237, 0.15);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Элемент корзины при наведении */
+.cart-item:hover {
+  background-color: rgba(124, 58, 237, 0.25);
+  transform: scale(1.02);
+}
+
+/* Детали товара */
+.cart-item .item-details {
+  font-size: 1.1rem;
+  color: #eaeaea;
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+/* Кнопка удаления */
+.cart-item button {
+  background-color: rgba(72, 25, 182, 0.4);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Кнопка удаления при наведении */
+.cart-item button:hover {
+  background-color: rgba(124, 58, 237, 0.6);
+}
+
+/* Итоговая стоимость корзины */
+#cart-items .total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ffffff;
+  padding-top: 15px;
+}

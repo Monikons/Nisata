@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Услуги | NoName</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<header class="flex justify-between items-center px-6 py-4 shadow-xl bg-black/70 backdrop-blur sticky top-0 z-50">
+  <h1 class="text-3xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-500">
+    NisataStudio
+  </h1>
+  <nav class="space-x-6 text-lg font-medium">
+      <a href="index.html" class="hover:text-purple-400 transition">Главная</a>
+      <a href="about.html" class="hover:text-purple-400 transition">О нас</a>
+      <a href="services.html" class="hover:text-purple-400 transition">Услуги</a>
+      <a href="contacts.html" class="hover:text-purple-400 transition">Контакты</a>
+      <a href="faq.html" class="hover:text-purple-400 transition">FAQ</a>
+    </nav>
+</header>
+<body class="bg-black text-white font-sans">
+
+  <section class="px-6 py-16 text-center">
+    <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-500 mb-10">
+      Калькулятор стоимости
+    </h2>
+    <p class="text-gray-300 mb-6 max-w-2xl mx-auto">
+      Нажмите на нужные услуги, чтобы рассчитать стоимость проекта.
+    </p>
+
+    <div id="service-list" class="grid md:grid-cols-4 sm:grid-cols-2 gap-6 max-w-5xl mx-auto mb-10">
+      <div onclick="toggleService('landing', 300)" class="cursor-pointer bg-white/5 border border-purple-800 rounded-xl p-6 hover:shadow-purple-500/40 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-400 mb-2">Лендинг</h3>
+        <p class="text-gray-300 text-sm">Одностраничный сайт</p>
+        <p class="mt-4 text-2xl font-bold text-purple-500">от $300</p>
+      </div>
+      <div onclick="toggleService('shop', 600)" class="cursor-pointer bg-white/5 border border-purple-800 rounded-xl p-6 hover:shadow-purple-500/40 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-400 mb-2">Интернет-магазин</h3>
+        <p class="text-gray-300 text-sm">Каталог, корзина, оплата</p>
+        <p class="mt-4 text-2xl font-bold text-purple-500">от $600</p>
+      </div>
+      <div onclick="toggleService('bot', 250)" class="cursor-pointer bg-white/5 border border-purple-800 rounded-xl p-6 hover:shadow-purple-500/40 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-400 mb-2">Бот</h3>
+        <p class="text-gray-300 text-sm">Telegram / Discord / VK</p>
+        <p class="mt-4 text-2xl font-bold text-purple-500">от $250</p>
+      </div>
+      <div onclick="toggleService('app', 900)" class="cursor-pointer bg-white/5 border border-purple-800 rounded-xl p-6 hover:shadow-purple-500/40 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-400 mb-2">Приложение</h3>
+        <p class="text-gray-300 text-sm">iOS и Android</p>
+        <p class="mt-4 text-2xl font-bold text-purple-500">от $900</p>
+      </div>
+      <div onclick="toggleService('seo', 500)" class="cursor-pointer bg-white/5 border border-purple-800 rounded-xl p-6 hover:shadow-purple-500/40 hover:shadow-lg transition">
+        <h3 class="text-xl font-semibold text-purple-400 mb-2">SEO-оптимизация</h3>
+        <p class="text-gray-300 text-sm">Продвижение в поиске</p>
+        <p class="mt-4 text-2xl font-bold text-purple-500">от $500</p>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <p class="text-xl font-semibold text-white">Итого: <span id="total-usd">$0</span> / <span id="total-rub">₽0</span></p>
+    </div>
+      <a href="basket.html">
+        <button class="mt-10 px-8 py-4 rounded-full bg-gradient-to-r from-purple-700 to-purple-500 hover:from-purple-600 hover:to-purple-400 text-white text-lg shadow-lg transition">
+            к оформлению
+        </button>
+      </a>
+      <button onclick="clearCart()" class="px-6 py-3 rounded-full border border-purple-400 hover:bg-purple-400 hover:text-black transition text-purple-300 font-semibold">Очистить</button>
+  </section>
+
+  <script>
+    let total = 0;
+    let selected = {};
+    const rate = 93;
+
+    function toggleService(service, price) {
+      if (selected[service]) {
+        total -= price;
+        delete selected[service];
+      } else {
+        total += price;
+        selected[service] = price;
+      }
+      updateTotal();
+      localStorage.setItem('cart', JSON.stringify(selected)); // Сохраняем корзину в localStorage
+    }
+
+    function updateTotal() {
+      document.getElementById('total-usd').textContent = `$${total}`;
+      document.getElementById('total-rub').textContent = `₽${total * rate}`;
+    }
+
+    function clearCart() {
+      total = 0;
+      selected = {};
+      updateTotal();
+      localStorage.removeItem('cart'); // Очищаем корзину в localStorage
+    }
+  </script>
+</body>
+</html>
